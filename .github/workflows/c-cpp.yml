@@ -1,0 +1,46 @@
+name: GraphScope CI
+
+on: [push, pull_request]
+
+jobs:
+  build_analytical:
+    runs-on: ubuntu:latest
+    steps:
+    - name: Build Image
+      run:
+        mkdir ${{ github.workspace }}/install
+        touch install/a
+        mkdir -p install/b/c
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: analytical-${{ github.sha }}
+        path: ${{ github.workspace }}/install
+    - uses: actions/upload-artifact@v3
+      with:
+        name: interactive-${{ github.sha }}
+        path: ${{ github.workspace }}/install
+    - uses: actions/upload-artifact@v3
+      with:
+        name: learning-${{ github.sha }}
+        path: ${{ github.workspace }}/install
+
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: analytical-${{ github.sha }}
+        path: ${{ github.workspace }}/artifacts/analytical/install
+
+    - name: LS
+      run:
+        ls -R ./artifacts
+        rm -rf ./artifacts
+
+    - uses: actions/download-artifact@v3
+      with:
+        path: artifacts
+    
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: artifacts
+
