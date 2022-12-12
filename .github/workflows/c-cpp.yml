@@ -9,8 +9,10 @@ jobs:
     - name: Build Image
       run:
         mkdir ${{ github.workspace }}/install
-        touch install/a
+        echo "xxx" > install/a
         mkdir -p install/b/c
+        echo "yyy" > install/b/c/d
+       
 
     - uses: actions/upload-artifact@v3
       with:
