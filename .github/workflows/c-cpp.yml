@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Build Image
-      run:
+      run: |
         mkdir ${{ github.workspace }}/install
         echo "xxx" > install/a
         mkdir -p install/b/c
@@ -34,7 +34,7 @@ jobs:
         path: ${{ github.workspace }}/artifacts/analytical/install
 
     - name: LS
-      run:
+      run: |
         ls -R ./artifacts
         rm -rf ./artifacts
 
