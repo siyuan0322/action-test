@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build_analytical:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
     - name: Build Image
       run:
