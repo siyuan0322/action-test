@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu
     steps:
     - run: echo "🎉 This job uses runner scale set runners!"
-    - run: lscpu
+    - run: sleep infinity
 
